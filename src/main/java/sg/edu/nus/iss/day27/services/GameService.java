@@ -35,9 +35,13 @@ public class GameService {
 	}
 	// This method adds a Comment object to the MongoDB collection and returns the generated comment ID
     public String addComment(Comment comment) {
+		// Generate a unique comment ID using UUID and substring it to first 8 characters
 		String commentId = UUID.randomUUID().toString().substring(0, 8);
+		// Set the generated comment ID to the Comment object
 		comment.setCommentId(commentId);
+		// Insert the Comment object to the MongoDB collection using commentRepo
 		commentRepo.insertComment(comment);
+		// Return the generated comment ID
 		return commentId;
 	}
 
